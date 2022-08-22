@@ -69,6 +69,8 @@ class Patient(models.Model):
     slug = models.SlugField(max_length=50,unique=True)
     blood = models.CharField(max_length=100)
 
+    objects = UserManager()
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.first_name+"-"+self.user.last_name)+"-"+str(self.user.id)
         super(Patient, self).save(*args, **kwargs)
